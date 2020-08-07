@@ -20,7 +20,7 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author,
                                      related_name='books',
                                      blank=True,
-                                     default='Not available')
+                                     default='')
     published_date = models.CharField(max_length=10)
     categories = models.ManyToManyField(Category,
                                         related_name='books',
@@ -31,5 +31,5 @@ class Book(models.Model):
     thumbnail = models.URLField()
 
     def __str__(self):
-        authors = ', '.join([author for author in self.authors])
+        authors = ', '.join([author.name for author in self.authors.all()])
         return f'{self.title} by {authors}'
