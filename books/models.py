@@ -29,3 +29,7 @@ class Book(models.Model):
     average_rating = models.PositiveSmallIntegerField()
     ratings_count = models.PositiveIntegerField()
     thumbnail = models.URLField()
+
+    def __str__(self):
+        authors = ', '.join([author for author in self.authors])
+        return f'{self.title} by {authors}'
